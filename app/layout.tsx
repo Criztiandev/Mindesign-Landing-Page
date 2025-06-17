@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+  readonly children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

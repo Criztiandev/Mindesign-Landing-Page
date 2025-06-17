@@ -639,7 +639,7 @@ export default function HomePage() {
                 >
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
                       className="object-cover"
@@ -843,7 +843,7 @@ export default function HomePage() {
                     >
                       <div className="w-64 h-64 border-2 border-[#303030] rounded-lg relative z-10">
                         <div className="w-full h-full bg-gradient-to-br from-[#ff69b4]/30 via-[#ff69b4]/20 to-[#ff69b4]/40 flex items-center justify-center rounded-lg overflow-hidden">
-                          <img
+                          <Image
                             src={member.image}
                             alt={member.name}
                             className="w-full h-full object-cover select-none pointer-events-none"
