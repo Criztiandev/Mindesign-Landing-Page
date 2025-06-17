@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: "Mindesigns - Design and Marketing Specialists",
   description:
     "Generate more leads and customers through your website. Design and marketing are our specialities.",
+  icons: {
+    icon: "/images/koala-logo.png",
+    shortcut: "/images/koala-logo.png",
+    apple: "/images/koala-logo.png",
+  },
 };
 
 interface RootLayoutProps {
@@ -29,6 +34,15 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/koala-logo.png" type="image/png" />
+        <link
+          rel="shortcut icon"
+          href="/images/koala-logo.png"
+          type="image/png"
+        />
+        <link rel="apple-touch-icon" href="/images/koala-logo.png" />
+      </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${thickThin.variable} font-poppins`}
       >
