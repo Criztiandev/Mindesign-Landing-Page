@@ -12,14 +12,22 @@ import resourcesDropdownItems from "@/data/resources.data";
 import projectData from "@/data/project.data";
 import teamMemberData from "@/data/team.data";
 import MeetingModal from "@/components/meeting-modal";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Hamburger, Menu } from "lucide-react";
 
 export default function HomePage() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
 
   const toggleMeetingModal = () => {
     setIsMeetingModalOpen(!isMeetingModalOpen);
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsDesktop(window.innerWidth > 768);
+    }
+  }, [isDesktop]);
 
   return (
     <Fragment>
@@ -46,37 +54,43 @@ export default function HomePage() {
             </span>
           </nav>
 
-          <Button className="bg-[#75fbc0] hover:bg-[#75fbc0]/90 text-black font-medium px-6 py-2 rounded-full">
-            Discover Portfolio
-          </Button>
+          {isDesktop ? (
+            <Button className="bg-[#75fbc0] hover:bg-[#75fbc0]/90 text-black font-medium px-6 py-2 rounded-full">
+              Discover Portfolio
+            </Button>
+          ) : (
+            <Button>
+              <Menu />
+            </Button>
+          )}
         </motion.header>
 
         {/* Large MINDESIGNS Text */}
-        <div className="border-t-2 border-b-2 border-black h-[300px] overflow-hidden flex items-center justify-center">
+        <div className="border-t-2 border-b-2 border-black h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden flex items-center justify-center">
           <motion.div
             className=""
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="text-[#303030] text-[18rem] hero-text leading-none tracking-wider font-thick-thin px-[20px] pt-[40px] h-[250px]">
+            <div className="text-[#303030] text-[3rem] sm:text-[3rem] md:text-[7rem] lg:text-[10rem] xl:text-[14rem] 2xl:text-[18rem] hero-text leading-none tracking-wider font-thick-thin px-[10px] sm:px-[20px] pt-[20px] sm:pt-[30px] md:pt-[40px] h-[90px] sm:h-[200px] md:h-[180px] 2xl:h-[250px] break-words text-center">
               MINDESIGNS
             </div>
           </motion.div>
         </div>
 
         {/* Main Content Section */}
-        <div className="px-6 lg:px-12 border-b-2 border-black">
-          <div className="grid lg:grid-cols-[70%_auto] gap-12 items-center">
+        <div className="px-4 sm:px-6 lg:px-12 border-b-2 border-black">
+          <div className="grid lg:grid-cols-[70%_auto] gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
-              className="space-y-8 border-r-2 border-black pr-4"
+              className="space-y-6 sm:space-y-8 lg:border-r-2 lg:border-black lg:pr-4"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="space-y-6 border-black mt-12 pb-12">
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black text-[#303030] leading-tight">
+              <div className="space-y-4 sm:space-y-6 border-black mt-8 sm:mt-12 pb-8 sm:pb-12">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-[#303030] leading-tight">
                   DO YOU WANT TO{" "}
                   <span className="text-[#75fbc0]">
                     GENERATE MORE LEADS AND CUSTOMERS
@@ -84,7 +98,7 @@ export default function HomePage() {
                   THROUGH YOUR WEBSITE?
                 </h1>
 
-                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-black text-[#303030] leading-tight">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-[#303030] leading-tight">
                   YOU ARE IN THE RIGHT PLACE! DESIGN AND MARKETING ARE OUR
                   SPECIALITIES.
                 </h2>
@@ -93,10 +107,10 @@ export default function HomePage() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="mb-12"
+                className="mb-8 sm:mb-12"
                 onClick={toggleMeetingModal}
               >
-                <Button className="bg-[#75fbc0] hover:bg-[#75fbc0]/90 text-black font-medium border-2 border-black p-6 rounded-full text-lg">
+                <Button className="bg-[#75fbc0] hover:bg-[#75fbc0]/90 text-black font-medium border-2 border-black p-4 sm:p-6 rounded-full text-base sm:text-lg w-full sm:w-auto">
                   Let&apos;s Talk
                 </Button>
               </motion.div>
@@ -104,24 +118,24 @@ export default function HomePage() {
 
             {/* Right Content - Koala Illustration */}
             <motion.div
-              className="flex justify-center lg:justify-end border-black"
+              className="flex justify-center lg:justify-end border-black order-first lg:order-last mt-4"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <motion.div
-                className="bg-[#75fbc0] rounded-3xl p-12 w-full max-w-md aspect-square flex items-center justify-center"
+                className="bg-[#75fbc0] rounded-3xl p-6 sm:p-8 md:p-12 w-full max-w-[280px] sm:max-w-[320px] md:max-w-md aspect-square flex items-center justify-center"
                 whileHover={{ scale: 1.02, rotate: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div className="relative w-96 h-96">
+                <div className="relative w-full h-full max-w-[240px] max-h-[240px] sm:max-w-[280px] sm:max-h-[280px] md:max-w-96 md:max-h-96">
                   {/* Koala SVG Illustration */}
                   <Image
                     src="/images/koala-logo.png"
                     alt="Koala"
                     width={800}
                     height={800}
-                    className="w-full h-full"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </motion.div>
