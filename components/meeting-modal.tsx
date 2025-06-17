@@ -87,7 +87,7 @@ const MeetingModal = ({ isOpen, onClose }: MeetingModalProps) => {
                     Schedule a Meeting
                   </h2>
                   <p className="text-[#303030]/70 mt-1">
-                    Let's discuss your project and how we can help
+                    Let&apos;s discuss your project and how we can help
                   </p>
                 </div>
                 <Button

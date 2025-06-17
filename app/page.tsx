@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
@@ -96,7 +97,7 @@ export default function HomePage() {
                 onClick={toggleMeetingModal}
               >
                 <Button className="bg-[#75fbc0] hover:bg-[#75fbc0]/90 text-black font-medium border-2 border-black p-6 rounded-full text-lg">
-                  Let's Talk
+                  Let&apos;s Talk
                 </Button>
               </motion.div>
             </motion.div>
