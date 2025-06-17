@@ -6,6 +6,11 @@ import { ChevronDown } from "lucide-react";
 import Footer from "@/components/footer";
 import Image from "next/image";
 import partnershipData from "@/data/partnership.data";
+import HeaderDropdown from "@/components/header-drop-down";
+import servicesDropdownItems from "@/data/service.data";
+import resourcesDropdownItems from "@/data/resources.data";
+import projectData from "@/data/project.data";
+import teamMemberData from "@/data/team.data";
 
 export default function HomePage() {
   return (
@@ -17,19 +22,13 @@ export default function HomePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="text-2xl font-bold text-[#303030] font-thick-thin">
+        <div className="text-2xl font-bold text-[#303030]">
           min<span className="text-[#75fbc0]">designs</span>
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <div className="flex items-center space-x-1 text-[#303030] hover:text-[#75fbc0] transition-colors cursor-pointer">
-            <span>Services</span>
-            <ChevronDown className="w-4 h-4" />
-          </div>
-          <div className="flex items-center space-x-1 text-[#303030] hover:text-[#75fbc0] transition-colors cursor-pointer">
-            <span>Resources</span>
-            <ChevronDown className="w-4 h-4" />
-          </div>
+          <HeaderDropdown title="Services" items={servicesDropdownItems} />
+          <HeaderDropdown title="Resources" items={resourcesDropdownItems} />
           <span className="text-[#303030] hover:text-[#75fbc0] transition-colors cursor-pointer">
             About Us
           </span>
@@ -611,9 +610,9 @@ export default function HomePage() {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {Array.from({ length: 8 }).map((_, index) => (
+            {projectData.map((project, index) => (
               <motion.div
-                key={index}
+                key={project.title}
                 className="bg-white border-2 border-[#303030]/20 rounded-2xl overflow-hidden hover:border-[#75fbc0] transition-all duration-300 hover:shadow-lg group"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -623,17 +622,17 @@ export default function HomePage() {
               >
                 {/* Project Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <motion.div
-                    className="w-full h-full bg-gradient-to-br from-[#ff69b4] via-[#4c3a57] to-[#75fbc0] opacity-90"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover"
                   />
                 </div>
 
                 {/* Project Content */}
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-bold text-[#303030]">
-                    The Tento Project
+                    {project.title}
                   </h3>
 
                   {/* Tags */}
@@ -667,7 +666,7 @@ export default function HomePage() {
 
       {/* Values Section */}
       <motion.section
-        className="py-[150px] bg-[#FFF5EE]"
+        className="py-[150px] bg-[#FFF5EE] border-t-2 border-black border-b-2"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -687,124 +686,23 @@ export default function HomePage() {
               {/* Collaboration Icon */}
               <div className="flex justify-center mb-8">
                 <div className="relative w-40 h-40">
-                  <svg viewBox="0 0 160 160" className="w-full h-full">
-                    {/* Hands coming together */}
-                    <path
-                      d="M40 80 Q50 70 60 75 L70 80 Q75 85 70 90 L60 85 Q50 90 40 80"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <path
-                      d="M120 80 Q110 70 100 75 L90 80 Q85 85 90 90 L100 85 Q110 90 120 80"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-
-                    {/* Left hand */}
-                    <ellipse
-                      cx="45"
-                      cy="75"
-                      rx="8"
-                      ry="15"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(-20 45 75)"
-                    />
-                    <ellipse
-                      cx="50"
-                      cy="70"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(-10 50 70)"
-                    />
-                    <ellipse
-                      cx="55"
-                      cy="68"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                    />
-                    <ellipse
-                      cx="60"
-                      cy="70"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(10 60 70)"
-                    />
-
-                    {/* Right hand */}
-                    <ellipse
-                      cx="115"
-                      cy="75"
-                      rx="8"
-                      ry="15"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(20 115 75)"
-                    />
-                    <ellipse
-                      cx="110"
-                      cy="70"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(10 110 70)"
-                    />
-                    <ellipse
-                      cx="105"
-                      cy="68"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                    />
-                    <ellipse
-                      cx="100"
-                      cy="70"
-                      rx="6"
-                      ry="12"
-                      fill="none"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      transform="rotate(-10 100 70)"
-                    />
-
-                    {/* Sparkles/stars around hands */}
-                    <g stroke="#303030" strokeWidth="2" fill="none">
-                      <path d="M30 50 L35 55 L30 60 L25 55 Z" />
-                      <path d="M130 45 L135 50 L130 55 L125 50 Z" />
-                      <circle cx="25" cy="90" r="2" fill="#303030" />
-                      <circle cx="135" cy="85" r="2" fill="#303030" />
-                      <path d="M35 30 L37 35 L35 40 L33 35 Z" />
-                      <path d="M125 25 L127 30 L125 35 L123 30 Z" />
-                    </g>
-                  </svg>
+                  <Image
+                    src="/images/values-1.png"
+                    alt="Collaboration"
+                    width={160}
+                    height={160}
+                  />
                 </div>
               </div>
 
               <div className="space-y-6">
                 <h3 className="text-3xl lg:text-4xl font-black text-[#303030]">
-                  MARKET CENTERED
+                  Collaboration
                 </h3>
                 <p className="text-[#303030]/80 text-lg leading-relaxed max-w-sm mx-auto">
-                  Our creative process starts with curiosity about the market's
-                  problems and desires. The more we know, the better we can
-                  tailor our strategies.
+                  We collaborate with you to understand how your business works
+                  and share our knowledge to build an excellent customer
+                  experience.
                 </p>
               </div>
             </motion.div>
@@ -820,136 +718,49 @@ export default function HomePage() {
               {/* Creativity Icon */}
               <div className="flex justify-center mb-8">
                 <div className="relative w-40 h-40">
-                  <svg viewBox="0 0 160 160" className="w-full h-full">
-                    {/* Main hand */}
-                    <g stroke="#303030" strokeWidth="2" fill="none">
-                      <ellipse
-                        cx="70"
-                        cy="85"
-                        rx="8"
-                        ry="15"
-                        transform="rotate(-10 70 85)"
-                      />
-                      <ellipse
-                        cx="75"
-                        cy="80"
-                        rx="6"
-                        ry="12"
-                        transform="rotate(0 75 80)"
-                      />
-                      <ellipse
-                        cx="80"
-                        cy="78"
-                        rx="6"
-                        ry="12"
-                        transform="rotate(10 80 78)"
-                      />
-                      <ellipse
-                        cx="85"
-                        cy="80"
-                        rx="6"
-                        ry="12"
-                        transform="rotate(20 85 80)"
-                      />
-                      <ellipse
-                        cx="90"
-                        cy="85"
-                        rx="5"
-                        ry="10"
-                        transform="rotate(30 90 85)"
-                      />
-                    </g>
-
-                    {/* Secondary hand reaching */}
-                    <g stroke="#303030" strokeWidth="2" fill="none">
-                      <ellipse
-                        cx="110"
-                        cy="45"
-                        rx="6"
-                        ry="12"
-                        transform="rotate(45 110 45)"
-                      />
-                      <ellipse
-                        cx="115"
-                        cy="40"
-                        rx="5"
-                        ry="10"
-                        transform="rotate(35 115 40)"
-                      />
-                      <ellipse
-                        cx="120"
-                        cy="38"
-                        rx="5"
-                        ry="10"
-                        transform="rotate(25 120 38)"
-                      />
-                      <ellipse
-                        cx="125"
-                        cy="40"
-                        rx="5"
-                        ry="10"
-                        transform="rotate(15 125 40)"
-                      />
-                    </g>
-
-                    {/* Creative elements - stars */}
-                    <g stroke="#303030" strokeWidth="2" fill="none">
-                      <path d="M100 25 L102 30 L107 30 L103 33 L105 38 L100 35 L95 38 L97 33 L93 30 L98 30 Z" />
-                      <path d="M130 60 L131 63 L134 63 L132 65 L133 68 L130 66 L127 68 L128 65 L126 63 L129 63 Z" />
-                      <path d="M40 40 L41 43 L44 43 L42 45 L43 48 L40 46 L37 48 L38 45 L36 43 L39 43 Z" />
-                    </g>
-
-                    {/* Geometric shapes */}
-                    <rect
-                      x="45"
-                      y="60"
-                      width="8"
-                      height="8"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      fill="none"
-                      transform="rotate(45 49 64)"
-                    />
-                    <circle
-                      cx="120"
-                      cy="80"
-                      r="4"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <polygon
-                      points="35,80 40,85 35,90 30,85"
-                      stroke="#303030"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-
-                    {/* Sparkles */}
-                    <g fill="#303030">
-                      <circle cx="55" cy="35" r="1.5" />
-                      <circle cx="135" cy="45" r="1.5" />
-                      <circle cx="25" cy="70" r="1.5" />
-                      <circle cx="140" cy="95" r="1.5" />
-                    </g>
-
-                    {/* Motion lines */}
-                    <g
-                      stroke="#303030"
-                      strokeWidth="1"
-                      fill="none"
-                      strokeDasharray="2,2"
-                    >
-                      <path d="M95 50 Q105 45 115 50" />
-                      <path d="M50 75 Q60 70 70 75" />
-                    </g>
-                  </svg>
+                  <Image
+                    src="/images/values-2.png"
+                    alt="Collaboration"
+                    width={160}
+                    height={160}
+                  />
                 </div>
               </div>
 
               <div className="space-y-6">
                 <h3 className="text-3xl lg:text-4xl font-black text-[#303030]">
-                  CREATIVITY
+                  Market Centered
+                </h3>
+                <p className="text-[#303030]/80 text-lg leading-relaxed max-w-sm mx-auto">
+                  Our creative process starts with curiosity about the market’s
+                  problems and desires. The more we know, the better we can
+                  tailor our strategies.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="text-center space-y-8"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {/* Creativity Icon */}
+              <div className="flex justify-center mb-8">
+                <div className="relative w-40 h-40">
+                  <Image
+                    src="/images/values-3.png"
+                    alt="Collaboration"
+                    width={160}
+                    height={160}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <h3 className="text-3xl lg:text-4xl font-black text-[#303030]">
+                  Creativity
                 </h3>
                 <p className="text-[#303030]/80 text-lg leading-relaxed max-w-sm mx-auto">
                   Creativity comes from your vision and business mission. We are
@@ -989,7 +800,7 @@ export default function HomePage() {
             <motion.div
               className="flex gap-8 cursor-grab active:cursor-grabbing"
               drag="x"
-              dragConstraints={{ left: -1600, right: 0 }}
+              dragConstraints={{ left: -400, right: 100 }}
               dragElastic={0.1}
               dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
               initial={{ x: 0 }}
@@ -997,9 +808,9 @@ export default function HomePage() {
               whileDrag={{ cursor: "grabbing" }}
             >
               {/* First set of team members */}
-              {Array.from({ length: 5 }).map((_, index) => (
+              {teamMemberData.map((member, index) => (
                 <motion.div
-                  key={`first-${index}`}
+                  key={member.name}
                   className="flex-shrink-0 text-center space-y-4"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -1016,8 +827,8 @@ export default function HomePage() {
                     <div className="w-64 h-64 border-2 border-[#303030] rounded-lg relative z-10">
                       <div className="w-full h-full bg-gradient-to-br from-[#ff69b4]/30 via-[#ff69b4]/20 to-[#ff69b4]/40 flex items-center justify-center rounded-lg overflow-hidden">
                         <img
-                          src="/placeholder.svg?height=256&width=256"
-                          alt={`Team member ${index + 1}`}
+                          src={member.image}
+                          alt={member.name}
                           className="w-full h-full object-cover select-none pointer-events-none"
                           draggable={false}
                         />
@@ -1047,66 +858,10 @@ export default function HomePage() {
                   {/* Team Member Info */}
                   <div className="space-y-2 pointer-events-none">
                     <h3 className="text-2xl font-black text-[#303030]">
-                      JOHN DOE
+                      {member.name}
                     </h3>
                     <p className="text-[#303030]/80 text-lg font-medium">
-                      PRODUCT DESIGNER
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Duplicate set for infinite scroll effect */}
-              {Array.from({ length: 5 }).map((_, index) => (
-                <motion.div
-                  key={`second-${index}`}
-                  className="flex-shrink-0 text-center space-y-4"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {/* Team Member Photo */}
-                  <motion.div
-                    className="relative cursor-grab active:cursor-grabbing"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="w-64 h-64 border-2 border-[#303030] rounded-lg relative z-10">
-                      <div className="w-full h-full bg-gradient-to-br from-[#ff69b4]/30 via-[#ff69b4]/20 to-[#ff69b4]/40 flex items-center justify-center rounded-lg overflow-hidden">
-                        <img
-                          src="/placeholder.svg?height=256&width=256"
-                          alt={`Team member ${index + 6}`}
-                          className="w-full h-full object-cover select-none pointer-events-none"
-                          draggable={false}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Drag indicator overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200 bg-black/10 rounded-lg z-20">
-                      <div className="bg-white/90 rounded-full p-2 shadow-lg">
-                        <svg
-                          className="w-6 h-6 text-[#303030]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16l-4-4m0 0l4-4m-4 4h18M17 8l4 4m0 0l-4 4"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Team Member Info */}
-                  <div className="space-y-2 pointer-events-none">
-                    <h3 className="text-2xl font-black text-[#303030]">
-                      JOHN DOE
-                    </h3>
-                    <p className="text-[#303030]/80 text-lg font-medium">
-                      PRODUCT DESIGNER
+                      {member.role}
                     </p>
                   </div>
                 </motion.div>
