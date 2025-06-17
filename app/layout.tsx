@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -21,16 +22,23 @@ export const metadata: Metadata = {
     "Generate more leads and customers through your website. Design and marketing are our specialities.",
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${poppins.variable} ${thickThin.variable} font-poppins`}
       >
+        <Toaster
+          richColors
+          position="top-right"
+          duration={5000}
+          closeButton
+          theme="dark"
+        />
         {children}
       </body>
     </html>
